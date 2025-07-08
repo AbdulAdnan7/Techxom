@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import HeadImage from '../assets/HeadImage.png'
+import { NavLink } from 'react-router-dom';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -15,29 +16,29 @@ const Home = () => {
     }, [])
 
     const handleSubmit = async (e) => {
-         e.preventDefault();
-          setSuccess(false)
-          setError(false)
+        e.preventDefault();
+        setSuccess(false)
+        setError(false)
 
-   try {
-    const response = await fetch('https://formspree.io/f/xrbkwkpn', {
-        method: 'POST',
-        headers: {
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify({email})
-    })
+        try {
+            const response = await fetch('https://formspree.io/f/xrbkwkpn', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email })
+            })
 
-    if(response.ok) {
-        setSuccess(true);
-        setEmail('')
-    } else {
-        setError(true)
-    }
-   } catch (err) {
-    setError(true)
-   }
-       
+            if (response.ok) {
+                setSuccess(true);
+                setEmail('')
+            } else {
+                setError(true)
+            }
+        } catch (err) {
+            setError(true)
+        }
+
     }
 
     return (
@@ -70,7 +71,7 @@ const Home = () => {
                     />
                 </div>
             </section>
-    
+
 
             {/** Top pick's Sections */}
 
@@ -153,66 +154,99 @@ const Home = () => {
                 </div>
             </section>
 
-{/** Email Subscription */}
- <section className='bg-rose-50 py-16 px-6 text-center'>
-    <div className='max-w-l mx-auto'>
- <h2 className='text-3xl font-bold text-gary-400 mb-4'>Stay in the Loop!</h2>
- <p className='mb-6'>Sunscript to our newsletter and get the latest tech deals and updates</p>
-   {!success ? (
-    <form 
-    onSubmit={handleSubmit}
-    className='flex flex-col sm:flex-row items-center gap-6'>
-    <input 
-    type="email"
-    value={email}
-    onChange={(e) => setEmail(e.target.value)}
-    placeholder='Enter your email'
-    className='w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-400
+            {/** Email Subscription */}
+            <section className='bg-rose-50 py-16 px-6 text-center'>
+                <div className='max-w-l mx-auto'>
+                    <h2 className='text-3xl font-bold text-gary-400 mb-4'>Stay in the Loop!</h2>
+                    <p className='mb-6'>Sunscript to our newsletter and get the latest tech deals and updates</p>
+                    {!success ? (
+                        <form
+                            onSubmit={handleSubmit}
+                            className='flex flex-col sm:flex-row items-center gap-6'>
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder='Enter your email'
+                                className='w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-400
 '
-    required
-    />
-  <button type='submit' className="bg-rose-600 text-white px-6 py-2 rounded-md hover:bg-rose-700 transition" >Subscribe</button>
-    </form>
-   ) : (
-    <p className='text-green-600 font-medium mt-4'>Thank you for Subscribing</p>
-   )}
-  
-  {
-    error && (
-        <p className='text-red-600 mt-4'>Oops! Something went Wrong. Please try again.</p>
-    )
-  }
+                                required
+                            />
+                            <button type='submit' className="bg-rose-600 text-white px-6 py-2 rounded-md hover:bg-rose-700 transition" >Subscribe</button>
+                        </form>
+                    ) : (
+                        <p className='text-green-600 font-medium mt-4'>Thank you for Subscribing</p>
+                    )}
 
-    </div>
- </section>
+                    {
+                        error && (
+                            <p className='text-red-600 mt-4'>Oops! Something went Wrong. Please try again.</p>
+                        )
+                    }
 
-
-{/*
-<section className="bg-rose-50 py-16 px-6 text-center">
-  <div className="max-w-xl mx-auto">
-    <h2 className="text-3xl font-bold text-gray-800 mb-4">Stay in the Loop!</h2>
-    <p className="text-gray-600 mb-6">
-      Subscribe to our newsletter and get the latest tech deals and updates.
-    </p>
-    <form className="flex flex-col sm:flex-row items-center gap-4" onSubmit={(e) => e.preventDefault()}>
-      <input
-        type="email"
-        placeholder="Enter your email"
-        className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-400"
-        required
-      />
-      <button
-        type="submit"
-        className="bg-rose-600 text-white px-6 py-2 rounded-md hover:bg-rose-700 transition"
-      >
-        Subscribe
-      </button>
-    </form>
-  </div>
-</section> */}
+                </div>
+            </section>
 
 
+            {/**
+  * for footer
+  */}
 
+            <footer className='bg-rose-100 text-gray-800 pt-10 pb-6 px-6 md:px-20'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 mb-10'>
+                    {/** Logo & Description */}
+                    <div>
+                        <h2 className='text-2xl font-bold text-rose-600 mb-2'>TechXom</h2>
+                        <p className='text-sm'>Your trusted hub for modern tech gadgets, and great deals</p>
+                    </div>
+                   
+
+                    {/** Quick Links */}
+                    <div>
+                        <h3 className='font-semibold mb-3'>Quicks Links</h3>
+                        <ul className='space-y-2 text-sm'>
+                            <li><NavLink to='/'>
+                                Home</NavLink></li>
+                            <li><NavLink to='/products'>Products</NavLink></li>
+                            <li>
+                                <NavLink to='/about'>
+                                     About
+                                </NavLink>
+                            </li>
+                            <li><NavLink to='/contact'>Contact</NavLink></li>
+                        </ul>
+                    </div>
+                    {/** Help */}
+                    <div>
+                        <ul>
+                            <li><a href="#">Shipping & Returns</a></li>
+                            <li>
+                                <a href="#">Privacy Policy</a>
+                            </li>
+                            <li>
+                                <a href="#">FAQs</a>
+                            </li>
+                            <li>
+                                <a href="#">Terms of Services</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 className='font-semibold mb-3'>Connect with Us</h3>
+                        <div className='flex space-x-4 text-rose-600'>
+                            <a href="#"><i className='fab fa-facebook-f'></i></a>
+                            <a href="#"><i className='fab fa-instagram'></i></a>
+                            <a href="#"><i className='fab fa-twitter'></i></a>
+                            <a href="#"><i className='fab fa-youtube'></i></a>
+                        </div>
+                    </div>
+
+                </div>
+                <div className='border-t border-rose-300 pt-4 text-center text-sm text-gray-600'>
+           © {new Date().getFullYear()} TechXom. All rights reserved.
+                </div>
+            </footer>
         </>
     )
 }
