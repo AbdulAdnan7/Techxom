@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Headset",
+    "price": 400,
+    "description": "High-quality wireless headset with clear sound",
+    "image": "/Devices.png",
+    "category": "audio"
+  },
+  {
+    "id": 2,
+    "name": "MacBook Pro",
+    "price": 400,
+    "description": "Powerful MacBook for professionals",
+    "image": "/Mac.png",
+    "category": "computers"
+  },
+  {
+    "id": 3,
+    "name": "Digital Camera",
+    "price": 400,
+    "description": "Capture stunning images with this digital camera",
+    "image": "/DigitalCam.png",
+    "category": "camera"
+  },
+  {
+    "id": 4,
+    "name": "Gaming PC",
+    "price": 400,
+    "description": "High-performance PC for gaming and development",
+    "image": "/PC.png",
+    "category": "computers"
+  }
+]
