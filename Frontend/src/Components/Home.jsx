@@ -5,6 +5,7 @@ const Home = () => {
     const [products, setProducts] = useState([]);
     const [email, setEmail] = useState('');
     const [success, setSuccess] = useState(false)
+    const [error, setError] = useState(false)
 
     useEffect(() => {
         fetch('http://localhost:5000/products')
@@ -13,14 +14,30 @@ const Home = () => {
             .catch(err => console.log("Error fetching products:", err))
     }, [])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
          e.preventDefault();
+          setSuccess(false)
+          setError(false)
 
-         if(!email) return
+   try {
+    const response = await fetch('https://formspree.io/f/xrbkwkpn', {
+        method: 'POST',
+        headers: {
+            'Content-Type' : 'application/json'
+        },
+        body: JSON.stringify({email})
+    })
 
-         console.log('subscribed email', email);
-         setSuccess(true);
-         setEmail('')
+    if(response.ok) {
+        setSuccess(true);
+        setEmail('')
+    } else {
+        setError(true)
+    }
+   } catch (err) {
+    setError(true)
+   }
+       
     }
 
     return (
@@ -158,9 +175,14 @@ const Home = () => {
     </form>
    ) : (
     <p className='text-green-600 font-medium mt-4'>Thank you for Subscribing</p>
-   )
-    
-   }
+   )}
+  
+  {
+    error && (
+        <p className='text-red-600 mt-4'>Oops! Something went Wrong. Please try again.</p>
+    )
+  }
+
     </div>
  </section>
 
