@@ -41,6 +41,8 @@ const Home = () => {
                     />
                 </div>
             </section>
+    
+
             {/** Top pick's Sections */}
 
             <section className='py-16'>
@@ -80,6 +82,51 @@ const Home = () => {
                 </div>
 
             </section>
+            {/** Testimonial Section */}
+            <section className='bg-rose-50 py-16 px-6 md:px-20'>
+                <div className='text-center mb-12'>
+                    <h2 className='text-3xl md:text-4xl font-semibold text-gray-800'>What our <span className='text-rose-600'>Customers</span> Say</h2>
+                    <p className='mx-auto max-w-xl mt-4'>
+                        What our Techkies are saying
+                    </p>
+                </div>
+                <div className='grid gap-8 md:grid-cols-3'>
+                    {[
+                        {
+                            name: 'Sarah johnson',
+                            feedback: "I love the sleek design and amazing performance of the products! TechXom never disappoints.",
+                            image: "https://randomuser.me/api/portraits/women/68.jpg"
+                        },
+                        {
+                            name: 'John Doe',
+                            feedback: "Great value for money! The wireless headset I bought works like a charm.",
+                            image: "https://randomuser.me/api/portraits/men/75.jpg"
+                        },
+                        {
+                            name: "Priya Kumar",
+                            feedback:
+                                "Fast delivery, stylish gadgets, and responsive support. TechXom is my go-to tech shop now.",
+                            image:
+                                "https://randomuser.me/api/portraits/women/65.jpg",
+                        },
+                    ].map((testimonial, index) => (
+                        <div key={index} className='bg-white shadow-lg p-6 rounded-xl border-t-4 border-rose-500 text-center'>
+                            <img src={testimonial.image}
+                                alt={testimonial.name}
+                                className='w-20 h-20 rounded-full mx-auto object-cover border-4 border-rose-200'
+                            />
+                            {/** className="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-4 border-rose-200" */}
+                            <h1 className='text-gray-800 italic mb-4'>{testimonial.feedback}</h1>
+                            <p className='text-gray-900 font-semibold'>{testimonial.name}</p>
+                        </div>
+                    ))
+                    }
+                </div>
+            </section>
+
+{}
+
+
         </>
     )
 }
