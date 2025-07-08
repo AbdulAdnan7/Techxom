@@ -5,6 +5,7 @@ import Home from './Components/Home'
 import Products from './Components/Products'
 import Contact from './Components/Contact'
 import About from './Components/About'
+import Footer from './Components/Footer'
 
 function App() {
   let route = createBrowserRouter([{
@@ -12,6 +13,7 @@ function App() {
    element: <div>
      <Navbar />
      <Home />
+     <Footer />
     </div>
   },
   {
@@ -19,6 +21,7 @@ function App() {
     element: <div>
       <Navbar />
       <Products />
+      <Footer />
     </div>
   },
    {
@@ -26,6 +29,7 @@ function App() {
     element: <div>
       <Navbar />
       <About />
+      <Footer />
     </div>
   },
    {
@@ -33,6 +37,7 @@ function App() {
     element: <div>
       <Navbar />
       <Contact />
+      <Footer />
     </div>
   }
 ])

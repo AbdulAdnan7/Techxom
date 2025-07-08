@@ -21,7 +21,7 @@ const Products = () => {
     )
 
     return (
-        <section className=''>
+        <section className='mb-20'>
             <div className='flex justify-center mt-10'>
                 <h1 className='text-2xl'>All Products</h1>
             </div>
