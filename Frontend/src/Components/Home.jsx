@@ -3,6 +3,8 @@ import HeadImage from '../assets/HeadImage.png'
 
 const Home = () => {
     const [products, setProducts] = useState([]);
+    const [email, setEmail] = useState('');
+    const [success, setSuccess] = useState(false)
 
     useEffect(() => {
         fetch('http://localhost:5000/products')
@@ -10,6 +12,16 @@ const Home = () => {
             .then(data => setProducts(data))
             .catch(err => console.log("Error fetching products:", err))
     }, [])
+
+    const handleSubmit = (e) => {
+         e.preventDefault();
+
+         if(!email) return
+
+         console.log('subscribed email', email);
+         setSuccess(true);
+         setEmail('')
+    }
 
     return (
         <>
@@ -124,7 +136,59 @@ const Home = () => {
                 </div>
             </section>
 
-{}
+{/** Email Subscription */}
+ <section className='bg-rose-50 py-16 px-6 text-center'>
+    <div className='max-w-l mx-auto'>
+ <h2 className='text-3xl font-bold text-gary-400 mb-4'>Stay in the Loop!</h2>
+ <p className='mb-6'>Sunscript to our newsletter and get the latest tech deals and updates</p>
+   {!success ? (
+    <form 
+    onSubmit={handleSubmit}
+    className='flex flex-col sm:flex-row items-center gap-6'>
+    <input 
+    type="email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    placeholder='Enter your email'
+    className='w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-400
+'
+    required
+    />
+  <button type='submit' className="bg-rose-600 text-white px-6 py-2 rounded-md hover:bg-rose-700 transition" >Subscribe</button>
+    </form>
+   ) : (
+    <p className='text-green-600 font-medium mt-4'>Thank you for Subscribing</p>
+   )
+    
+   }
+    </div>
+ </section>
+
+
+{/*
+<section className="bg-rose-50 py-16 px-6 text-center">
+  <div className="max-w-xl mx-auto">
+    <h2 className="text-3xl font-bold text-gray-800 mb-4">Stay in the Loop!</h2>
+    <p className="text-gray-600 mb-6">
+      Subscribe to our newsletter and get the latest tech deals and updates.
+    </p>
+    <form className="flex flex-col sm:flex-row items-center gap-4" onSubmit={(e) => e.preventDefault()}>
+      <input
+        type="email"
+        placeholder="Enter your email"
+        className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-400"
+        required
+      />
+      <button
+        type="submit"
+        className="bg-rose-600 text-white px-6 py-2 rounded-md hover:bg-rose-700 transition"
+      >
+        Subscribe
+      </button>
+    </form>
+  </div>
+</section> */}
+
 
 
         </>
