@@ -11,7 +11,7 @@ const Products = () => {
     const category = ['All', 'Audio', 'Laptops', 'Phones', 'Accessories']
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://your-backend-name.onrender.com/products')
             .then(res => res.json())
             .then(data => {
                 console.log('Fetched Products', data)
