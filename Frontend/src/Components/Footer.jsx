@@ -46,9 +46,9 @@ const Footer = () => {
                         <div>
                             <h3 className='font-semibold mb-3'>Connect with Us</h3>
                             <div className='flex space-x-4 text-rose-600'>
-                                <a href="#"><i className='fab fa-facebook-f'></i></a>
+                                <a href='#'><i className='fab fa-facebook-f'></i></a>
                                 <a href="#"><i className='fab fa-instagram'></i></a>
-                                <a href="#"><i className='fab fa-twitter'></i></a>
+                                <a   href="https://twitter.com/peerabduladnan"><i className='fab fa-twitter'></i></a>
                                 <a href="#"><i className='fab fa-youtube'></i></a>
                             </div>
                         </div>
