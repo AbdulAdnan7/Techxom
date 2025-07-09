@@ -85,6 +85,11 @@ const Navbar = () => {
                    }
 
                 </li>
+                <li>
+                    <NavLink to='/cartItems' className='bg-rose-600 text-white px-3 py-1 rounded hover:bg-rose-800'>
+                  Go to Cart
+                  </NavLink>
+                </li>
             </ul>
 
             <div className='md:hidden'>

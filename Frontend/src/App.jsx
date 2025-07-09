@@ -7,6 +7,7 @@ import Contact from './Components/Contact'
 import About from './Components/About'
 import Footer from './Components/Footer'
 import Login from './Components/Login'
+import CartItem from './Components/CartItem'
 
 function App() {
   let route = createBrowserRouter([{
@@ -38,6 +39,13 @@ function App() {
     element: <div>
       <Navbar />
       <Contact />
+      <Footer />
+    </div>
+  }, {
+    path: '/cartItems',
+    element: <div>
+      <Navbar />
+      <CartItem />
       <Footer />
     </div>
   }

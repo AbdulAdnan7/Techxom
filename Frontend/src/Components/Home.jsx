@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import HeadImage from '../assets/HeadImage.png'
 import { NavLink } from 'react-router-dom';
+import { UseCart } from '../context/CartContext';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
