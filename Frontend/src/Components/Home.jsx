@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import HeadImage from '../assets/HeadImage.png'
 import { useCart } from '../context/CartContext';
 import toast, {Toaster} from 'react-hot-toast';
+import {NavLink } from 'react-router-dom'
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -70,12 +71,16 @@ const Home = () => {
                             Explore the world of smart devices, modern gadgets, and innovative tools built for tech enthusiasts.
                         </p>
                         <div className='flex flex-wrap gap-4 mt-6'>
+                            <NavLink to='/products'>
                             <button className='bg-rose-500 px-6 py-2 text-white rounded-md hover:bg-rose-700 transition duration-300'>
                                 Get Started
                             </button>
+                            </NavLink>
+                            <NavLink to='/about'>
                             <button className='border border-rose-500 text-rose-500 px-6 py-2 rounded-md hover:bg-rose-50 transition duration-300'>
                                 Learn More
                             </button>
+                            </NavLink>
                         </div>
 
 
