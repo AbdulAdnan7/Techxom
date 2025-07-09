@@ -1,9 +1,35 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router'
 import { Menu, X, ShoppingCart, Search } from 'lucide-react';
+import { onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { auth, provider } from '../firebase';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser)
+        });
+        return () => unsubscribe()
+    }, [])
+
+    const handleGoogleLogin = async () => {
+        try {
+            await signInWithPopup(auth, provider)
+        } catch (error) {
+            console.log('Login failed', error)
+        }
+    };
+
+    const handleLogout = async () => {
+        try {
+            await signOut(auth)
+        } catch (error) {
+            console.error('Logout failed: ', error)
+        }
+    }
 
     return (
         <nav className="bg-white shadow-md px-8 md:px-20 py-4 relative z-20 flex justify-between items-center">
@@ -42,17 +68,21 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink
-                        to="/login"
-                        className={({ isActive }) =>
-                            `px-4 py-2 rounded-md font-semibold transition-colors duration-300 ${isActive
-                                ? "bg-rose-700 text-white"
-                                : "bg-rose-600 text-white hover:bg-rose-700"
-                            }`
-                        }
-                    >
-                        Login
-                    </NavLink>
+                   {
+                    user ? (
+                          <div className='flex items-center space-x-3'>
+                            <img src={user.photoURL || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"} alt='user' className='w-8 h-8 rounded-full'
+                            referrerPolicy='no-referrer'
+                            />
+                            <span>{user.displayName}</span>
+                            <button onClick={handleLogout} className='ml-2 bg-gray-200 px-3 py-1 rouded hover:bg-gray-300'>Logout</button>
+                          </div>
+                    ) : (
+                        <button onClick={handleGoogleLogin}
+                        className='bg-rose-600 text-white px-4 py-2 rounded hover:bg-rose-700'
+                        >Sign in with Google</button>
+                    )
+                   }
 
                 </li>
             </ul>
@@ -78,8 +108,22 @@ const Navbar = () => {
                          <li>
                             <NavLink to='/About' onClick={() => setIsOpen(false)}>About</NavLink>
                         </li>
-                         <li>
-                            <NavLink to='/' onClick={() => setIsOpen(false)}><button className='bg-rose-500 px-2 py-1 text-white'>Sign-in</button></NavLink>
+                        <li>
+                             {
+                    user ? (
+                          <div className='text-sm flex flex-col items-start space-y-1'>
+                            <img src={user.photoURL || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"} alt='user' className='w-6 h-6 rounded-full'
+                            referrerPolicy='no-referrer'
+                            />
+                            <span>{user.displayName}</span>
+                            <button onClick={() => {handleLogout(); setIsOpen(fale) }} className='ml-2 bg-gray-200 px-3 py-1 rouded hover:bg-gray-300'>Logout</button>
+                          </div>
+                    ) : (
+                        <button onClick={handleGoogleLogin}
+                        className='bg-rose-600 text-white px-3 py-1 rounded hover:bg-rose-700'
+                        >Sign in with Google</button>
+                    )
+                   }
                         </li>
                     </ul>
                 )

@@ -6,6 +6,7 @@ import Products from './Components/Products'
 import Contact from './Components/Contact'
 import About from './Components/About'
 import Footer from './Components/Footer'
+import Login from './Components/Login'
 
 function App() {
   let route = createBrowserRouter([{
