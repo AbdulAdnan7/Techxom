@@ -105,6 +105,7 @@ const Navbar = () => {
                     {isOpen ? <X className='w-6 h-6' /> : <Menu className='w-6 h-6' />}
                 </button>
             </div>
+            
 
             {
                 isOpen && (
@@ -121,6 +122,21 @@ const Navbar = () => {
                         <li>
                             <NavLink to='/About' onClick={() => setIsOpen(false)}>About</NavLink>
                         </li>
+                       <li>
+  <NavLink
+    to="/cartItems"
+    onClick={() => setIsOpen(false)}
+    className={({ isActive }) =>
+      `block text-center bg-rose-600 hover:bg-rose-700 text-white font-medium px-4 py-2 rounded shadow transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-rose-500 ${
+        isActive ? 'bg-rose-800' : ''
+      }`
+    }
+    aria-label="Go to Cart"
+  >
+    🛒 Go to Cart
+  </NavLink>
+</li>
+
                         <li>
                             {
                                 user ? (
