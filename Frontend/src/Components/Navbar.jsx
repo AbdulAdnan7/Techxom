@@ -39,7 +39,7 @@ const Navbar = () => {
                 </h1>
             </div>
 
-            <ul className="text-gray-800 hidden md:flex items-center font-semibold space-x-8">
+            <ul className="text-gray-800 hidden lg:flex items-center font-semibold space-x-8">
                 <li>
                     <NavLink
                         to="/"
@@ -68,31 +68,39 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 <li>
-                   {
-                    user ? (
-                          <div className='flex items-center space-x-3'>
-                            <img src={user.photoURL || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"} alt='user' className='w-8 h-8 rounded-full'
-                            referrerPolicy='no-referrer'
-                            />
-                            <span>{user.displayName}</span>
-                            <button onClick={handleLogout} className='ml-2 bg-gray-200 px-3 py-1 rouded hover:bg-gray-300'>Logout</button>
-                          </div>
-                    ) : (
-                        <button onClick={handleGoogleLogin}
-                        className='bg-rose-600 text-white px-4 py-2 rounded hover:bg-rose-700'
-                        >Sign in with Google</button>
-                    )
-                   }
+                   <NavLink
+    to="/cartItems"
+    className="flex items-center gap-2 bg-rose-600 hover:bg-rose-700 text-white font-medium px-4 py-2 rounded shadow-lg hover:shadow-rose-700/30 transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-opacity-50"
+    activeClassName="bg-rose-800" 
+    aria-label="View your shopping cart"
+>
+    🛒 Go to Cart
+
+</NavLink>
+                </li>
+
+                <li>
+                    {
+                        user ? (
+                            <div className='flex items-center space-x-3'>
+                                <img src={user.photoURL || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"} alt='user' className='w-8 h-8 rounded-full'
+                                    referrerPolicy='no-referrer'
+                                />
+                                <span>{user.displayName}</span>
+                                <button onClick={handleLogout} className='ml-2 bg-gray-200 px-3 py-1 rouded hover:bg-gray-300'>Logout</button>
+                            </div>
+                        ) : (
+                            <button onClick={handleGoogleLogin}
+                                className='bg-rose-600 text-white px-4 py-2 rounded hover:bg-rose-700'
+                            >Sign in with Google</button>
+                        )
+                    }
 
                 </li>
-                <li>
-                    <NavLink to='/cartItems' className='bg-rose-600 text-white px-3 py-1 rounded hover:bg-rose-800'>
-                  Go to Cart
-                  </NavLink>
-                </li>
+
             </ul>
 
-            <div className='md:hidden'>
+            <div className='lg:hidden'>
                 <button onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? <X className='w-6 h-6' /> : <Menu className='w-6 h-6' />}
                 </button>
@@ -104,31 +112,31 @@ const Navbar = () => {
                         <li>
                             <NavLink to='/' onClick={() => setIsOpen(false)}>Home</NavLink>
                         </li>
-                         <li>
+                        <li>
                             <NavLink to='/products' onClick={() => setIsOpen(false)}>Products</NavLink>
                         </li>
-                         <li>
+                        <li>
                             <NavLink to='/contact' onClick={() => setIsOpen(false)}>Contact</NavLink>
                         </li>
-                         <li>
+                        <li>
                             <NavLink to='/About' onClick={() => setIsOpen(false)}>About</NavLink>
                         </li>
                         <li>
-                             {
-                    user ? (
-                          <div className='text-sm flex flex-col items-start space-y-1'>
-                            <img src={user.photoURL || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"} alt='user' className='w-6 h-6 rounded-full'
-                            referrerPolicy='no-referrer'
-                            />
-                            <span>{user.displayName}</span>
-                            <button onClick={() => {handleLogout(); setIsOpen(fale) }} className='ml-2 bg-gray-200 px-3 py-1 rouded hover:bg-gray-300'>Logout</button>
-                          </div>
-                    ) : (
-                        <button onClick={handleGoogleLogin}
-                        className='bg-rose-600 text-white px-3 py-1 rounded hover:bg-rose-700'
-                        >Sign in with Google</button>
-                    )
-                   }
+                            {
+                                user ? (
+                                    <div className='text-sm flex flex-col items-start space-y-1'>
+                                        <img src={user.photoURL || "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"} alt='user' className='w-6 h-6 rounded-full'
+                                            referrerPolicy='no-referrer'
+                                        />
+                                        <span>{user.displayName}</span>
+                                        <button onClick={() => { handleLogout(); setIsOpen(fale) }} className='ml-2 bg-gray-200 px-3 py-1 rouded hover:bg-gray-300'>Logout</button>
+                                    </div>
+                                ) : (
+                                    <button onClick={handleGoogleLogin}
+                                        className='bg-rose-600 text-white px-3 py-1 rounded hover:bg-rose-700'
+                                    >Sign in with Google</button>
+                                )
+                            }
                         </li>
                     </ul>
                 )

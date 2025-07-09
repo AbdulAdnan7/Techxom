@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Apple 14 Pro Max",
-    "price": 400,
+    "price": 40000,
     "description": "High-quality wireless headset with clear sound",
     "image": "/Devices.png",
     "category": "Phones"
@@ -10,7 +10,7 @@
   {
     "id": 2,
     "name": "MacBook Pro",
-    "price": 600,
+    "price": 60000,
     "description": "Powerful MacBook for professionals",
     "image": "/Mac.png",
     "category": "Laptops"
@@ -18,7 +18,7 @@
   {
     "id": 3,
     "name": "Digital Camera",
-    "price": 300,
+    "price": 300000,
     "description": "Capture stunning images with this digital camera",
     "image": "/DigitalCam.png",
     "category": "camera"
@@ -26,7 +26,7 @@
   {
     "id": 4,
     "name": "Gaming PC",
-    "price": 600,
+    "price": 60000,
     "description": "High-performance PC for gaming and development",
     "image": "/PC.png",
     "category": "Accessories"

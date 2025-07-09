@@ -1,13 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import HeadImage from '../assets/HeadImage.png'
-import { NavLink } from 'react-router-dom';
-import { UseCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext';
+import toast, {Toaster} from 'react-hot-toast';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
     const [email, setEmail] = useState('');
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState(false)
+
+    const {addToCart, removeFromCart, cartItems = []} = useCart();
+
+    const isInCart = (id) => {
+        if (!Array.isArray(cartItems)) return false;
+        return cartItems.some((item) => item?.id === id);
+    };
+
+    const handleAdd = (product) => {
+        addToCart(product);
+        toast.success(`${product.name} added to cart`)
+    };
+
+    const handleRemove = (id) => {
+        removeFromCart(id);
+        toast.error(`Item remove from cart`)
+    }
 
     useEffect(() => {
         fetch('http://localhost:5000/products')
@@ -44,7 +61,7 @@ const Home = () => {
 
     return (
         <>
-            <section className='bg-gradient-to-b from-rose-200 via-rose-50 to-white px-8 py-6 md:px-20 md:py-20 flex flex-row items-center justify-between'>
+            <section className='bg-gradient-to-b from-rose-200 via-rose-50 to-white px-8 py-6 md:px-20 md:py-20 flex flex-col md:flex-row  items-center justify-between gap-10'>
                 {/** for header section */}
                 <header className='max-w-4xl text-start'>
                     <div>
@@ -102,10 +119,15 @@ const Home = () => {
                             <div className="-mt-6 bg-gray-300 rounded-t-lg px-4 pb-4 pt-6 relative z-10">
                                 <h3 className="text-lg font-semibold text-gray-800 mb-1">{product.name}</h3>
                                 <p className="text-sm text-gray-600 mb-2 truncate">{product.description}</p>
-                                <p className="text-rose-600 font-bold mb-2">${product.price}</p>
-                                <button className="bg-rose-600 text-white px-3 py-1 text-sm rounded hover:bg-rose-700 transition">
-                                    Add to Cart
-                                </button>
+                                <p className="text-rose-600 font-bold mb-2">₹{product.price}</p>
+                                {
+                                    isInCart(product.id) ? (
+                                        <button onClick={()=> handleRemove(product.id)}   className="bg-gray-800 text-white px-3 py-1 text-sm rounded hover">Remove from cart</button>
+                                    ) : (
+                                        <button onClick={() => handleAdd(product)} className="bg-rose-600 text-white px-3 py-1 text-sm rounded hover:bg-rose-700 transition"
+                                    >Add to cart</button>
+                                    )
+                                }
                             </div>
                         </div>
                     ))}
