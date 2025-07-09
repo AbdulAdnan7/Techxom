@@ -27,7 +27,7 @@ const Home = () => {
     }
 
     useEffect(() => {
-        fetch('https://your-backend-name.onrender.com/products')
+        fetch('https://techxom.onrender.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
             .catch(err => console.log("Error fetching products:", err))
