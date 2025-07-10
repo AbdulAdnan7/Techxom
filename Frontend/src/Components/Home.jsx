@@ -109,7 +109,7 @@ const Home = () => {
                     {products.map((product) => (
                         <div
                             key={product.id}
-                            className="relative bg-rose-50 shadow-md w-[90%] sm:w-[280px] rounded-lg overflow-hidden"
+                            className="relative hover:scale-105 bg-rose-50 shadow-md w-[90%] sm:w-[280px] rounded-lg overflow-hidden"
                         >
                             {/* Top Image */}
                             <div className="w-full h-[200px] bg-rose-100 flex items-center justify-center overflow-hidden">
