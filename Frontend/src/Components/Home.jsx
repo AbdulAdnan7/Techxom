@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import HeadImage from '../assets/HeadImage.png'
 import { useCart } from '../context/CartContext';
-import toast, {Toaster} from 'react-hot-toast';
-import {NavLink } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast';
+import { NavLink } from 'react-router-dom'
+import Typed from 'typed.js';
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -10,7 +11,9 @@ const Home = () => {
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState(false)
 
-    const {addToCart, removeFromCart, cartItems = []} = useCart();
+    const el = useRef(null);
+
+    const { addToCart, removeFromCart, cartItems = [] } = useCart();
 
     const isInCart = (id) => {
         if (!Array.isArray(cartItems)) return false;
@@ -32,7 +35,26 @@ const Home = () => {
             .then(res => res.json())
             .then(data => setProducts(data))
             .catch(err => console.log("Error fetching products:", err))
-    }, [])
+    }, []);
+
+
+    useEffect(() => {
+        const typed = new Typed(el.current, {
+            strings: ["Smart Gadgets",
+                "Future Tech",
+                "Latest Electronics",
+                "Powerful Devices",
+                "Tech that Excites 🚀",
+                "Only at TechXom"],
+            typeSpeed: 190,
+            backSpeed: 30,
+            loop: true
+        })
+
+        return () => {
+            typed.destroy();
+        }
+    })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,20 +88,20 @@ const Home = () => {
                 {/** for header section */}
                 <header className='max-w-4xl text-start'>
                     <div>
-                        <h1 className='text-4xl md:text-5xl text-gray-600 font-semibold'>Let's dive into <span className='text-rose-600'>Tech</span></h1>
+                        <h1 className='text-4xl md:text-5xl text-gray-600 font-semibold'>Let's dive into <span className='text-rose-600' ref={el}>Tech</span></h1>
                         <p className="text-base md:text-lg text-gray-600 leading-relaxed px-2 sm:px-0 mt-4">
                             Explore the world of smart devices, modern gadgets, and innovative tools built for tech enthusiasts.
                         </p>
                         <div className='flex flex-wrap gap-4 mt-6'>
                             <NavLink to='/products'>
-                            <button className='bg-rose-500 px-6 py-2 text-white rounded-md hover:bg-rose-700 transition duration-300'>
-                                Get Started
-                            </button>
+                                <button className='bg-rose-500 px-6 py-2 text-white rounded-md hover:bg-rose-700 transition duration-300'>
+                                    Get Started
+                                </button>
                             </NavLink>
                             <NavLink to='/about'>
-                            <button className='border border-rose-500 text-rose-500 px-6 py-2 rounded-md hover:bg-rose-50 transition duration-300'>
-                                Learn More
-                            </button>
+                                <button className='border border-rose-500 text-rose-500 px-6 py-2 rounded-md hover:bg-rose-50 transition duration-300'>
+                                    Learn More
+                                </button>
                             </NavLink>
                         </div>
 
@@ -127,10 +149,10 @@ const Home = () => {
                                 <p className="text-rose-600 font-bold mb-2">₹{product.price}</p>
                                 {
                                     isInCart(product.id) ? (
-                                        <button onClick={()=> handleRemove(product.id)}   className="bg-gray-800 text-white px-3 py-1 text-sm rounded hover">Remove from cart</button>
+                                        <button onClick={() => handleRemove(product.id)} className="bg-gray-800 text-white px-3 py-1 text-sm rounded hover">Remove from cart</button>
                                     ) : (
                                         <button onClick={() => handleAdd(product)} className="bg-rose-600 text-white px-3 py-1 text-sm rounded hover:bg-rose-700 transition"
-                                    >Add to cart</button>
+                                        >Add to cart</button>
                                     )
                                 }
                             </div>
@@ -145,7 +167,7 @@ const Home = () => {
                 <div className='text-center mb-12'>
                     <h2 className='text-3xl md:text-4xl font-semibold text-gray-800'>What our <span className='text-rose-600'>Customers</span> Say</h2>
                     <p className='mx-auto max-w-xl mt-4 italic'>
-                    Hear from Our Tech Community
+                        Hear from Our Tech Community
                     </p>
                 </div>
                 <div className='grid gap-8 md:grid-cols-3'>
@@ -215,7 +237,7 @@ const Home = () => {
                 </div>
             </section>
 
-        
+
         </>
     )
 }
