@@ -1,5 +1,6 @@
 import React from 'react';
 import Logos from '../assets/Logo.png'
+import {NavLink } from 'react-router-dom'
 
 const About = () => {
   return (
@@ -36,11 +37,11 @@ const About = () => {
 
       {/* Call to Action */}
       <div className="mt-12 text-center">
-        <a href="/products">
+        <NavLink to="/products">
           <button className="bg-rose-600 text-white px-6 py-3 rounded-md hover:bg-rose-700 transition">
             Browse Products
           </button>
-        </a>
+        </NavLink>
       </div>
     </section>
   );
