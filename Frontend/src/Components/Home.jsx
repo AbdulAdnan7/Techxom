@@ -112,7 +112,7 @@ const Home = () => {
                     <img
                         src={HeadImage}
                         alt="Headphones"
-                        className="w-[250px] md:w-[350px] object-contain hidden md:block"
+                        className="w-[250px] md:w-[350px] object-contain hidden md:block floating"
                     />
                 </div>
             </section>
