@@ -144,8 +144,8 @@ const Home = () => {
             <section className='bg-rose-50 py-16 px-6 md:px-20'>
                 <div className='text-center mb-12'>
                     <h2 className='text-3xl md:text-4xl font-semibold text-gray-800'>What our <span className='text-rose-600'>Customers</span> Say</h2>
-                    <p className='mx-auto max-w-xl mt-4'>
-                        What our Techkies are saying
+                    <p className='mx-auto max-w-xl mt-4 italic'>
+                    Hear from Our Tech Community
                     </p>
                 </div>
                 <div className='grid gap-8 md:grid-cols-3'>
