@@ -120,10 +120,10 @@ const Home = () => {
 
             {/** Top pick's Sections */}
 
-            <section className='py-16'>
+            <section className='py-16 bg-rose-50'>
                 <div className='flex justify-center text-center'>
                     <h1 className='text-4xl'>
-                        Top Pick's this Month
+                       🔥<span className="bg-gradient-to-r from-rose-500 to-pink-500 text-transparent bg-clip-text"> Top Picks</span> this Month
                     </h1>
                 </div>
 
